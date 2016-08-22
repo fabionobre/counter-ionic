@@ -1,1 +1,34 @@
 /* Empty. Add your own CSS if you like */
+.counter-display {
+	text-align: center;
+	width: 100% !important;
+	height: 100%;
+	padding-top: 30%;
+	font-size: 2em;
+}
+
+.counter-display h1 {
+	font-size: 4rem;
+}
+
+.counter-display h4 {
+	font-size: 2rem;
+}
+
+.slider-container {
+	background: url() no-repeat center center;
+	background-size: cover;
+}
+
+/*.counter-container {
+    display: table !important;
+    width: 100% !important;
+    height: 100%;
+}
+
+.counter-container .scroll {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+*/
