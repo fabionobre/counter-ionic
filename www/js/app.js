@@ -54,5 +54,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('app.edit', {
+    url: '/edit/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/counter-add.html',
+        controller: 'EditCtrl'
+      }
+    }
+  })
+
   $urlRouterProvider.otherwise('/app/main');
 });

@@ -4,14 +4,19 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('MainCtrl', function($scope, $timeout) {
+.controller('MainCtrl', function($scope, $timeout, Counters) {
   // $scope.background = '../img/wallpaper-full-hd-1080-x-1920-smartphone-vortex-in-space.jpg';
 
   $scope.timerCount = 0;
+  $scope.counters = Counters.all();
 
   var timer = $timeout(function() { $scope.onTimeout(); }, 1000);
 
   $scope.onTimeout = function() {
+    for (var i = 0; i < $scope.counters.length; i++) {
+      Counters.calculateRemainCounter($scope.counters[i]);
+    }  
+
     // timer = $timeout(function() { $scope.onTimeout();}, 1000);
     $scope.timerCount += 1;
   };
@@ -28,20 +33,23 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('NewCtrl', function($scope, Counters) {
+.controller('NewCtrl', function($scope, $state, Counters) {
   
-  $scope.newCounter = {date: new Date(), useDate: false};
-  $scope.qntDias = 0;
-  $scope.qntHours = 0;
-  $scope.qntMinutes = 0;
+  $scope.newCounter = {date: new Date(), useDate: false, name:''};
 
-  $scope.updateCounter = function() {
-
-    $scope.newCounter.date.setHours(0,0,0,0);
-    Counters.calculateRemainCounter($scope.newCounter);
+  $scope.addCounter = function() {
+    Counters.add($scope.newCounter);
+    $state.go('app.main'); 
   };
-
-  $scope.now = function() {
-    return new Date();
-  }; 
 })
+
+.controller('EditCtrl', function($scope, $stateParams, $state, Counters) {
+  
+  $scope.newCounter = Counter.get($stateParams.id);
+
+  $scope.addCounter = function() {
+    Counters.chnage($scope.newCounter);
+    $state.go('app.main'); 
+  };
+})
+

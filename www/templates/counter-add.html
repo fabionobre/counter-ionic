@@ -9,7 +9,7 @@
 			<ion-checkbox ng-model="newCounter.useDate" ng-change="updateCounter()">use time</ion-checkbox>
 
 		  <label class="item item-input">
-		    <input type="date" placeholder="Counter Date" ng-model="newCounter.date" ng-change="updateCounter()">
+		    <input type="date" placeholder="Counter Date" ng-model="newCounter.date">
 		  </label>
 
 		  <label class="item item-input" ng-show="useDate">
@@ -24,16 +24,8 @@
 
 		</div>
 
-		<button class="button button-full button-positive">
-			Add new counter
+		<button class="button button-full button-positive" ng-click="addCounter()">
+			{{newCounter.id == null ? 'Add new counter' : 'Save changes'}}
 		</button>
-
-		Dias: {{newCounter.remainDays}} | 
-		Horas: {{newCounter.remainHours}} | 
-		Minutos: {{newCounter.remainMinutes}} | 
-		Date: {{newCounter.date}} | 
-		{{now()}}
-		{{newCounter.color}}
-
-  </ion-content>
+ 	</ion-content>
 </ion-view>

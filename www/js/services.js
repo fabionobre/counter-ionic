@@ -30,16 +30,21 @@ angular.module('starter.services', [])
         }
       }      
 
-      counter.id = task.id + 1;
-      counter.push(counter);
+      counter.id = counter.id + 1;
+      counters.push(counter);
       this.save();
     },
+    change: function(counter) {
+      oldCounter = this.get(counter.id);
+      oldCounter = counter;
+      this.save();
+    },    
     save: function(counter) {
       localStorage.setItem("listOfCounters", angular.toJson(counters));
     },
     calculateRemainCounter: function(counter) {
 
-      var rest = (counter.date - new Date());
+      var rest = (new Date(counter.date) - new Date());
       counter.remainDays = parseInt(rest / (24*60*60*1000));
 
       var rest = rest - (counter.remainDays * (24*60*60*1000));

@@ -9,10 +9,10 @@
 </style>
 
       <ion-slides slider="data.slider" class="slider-container" options="swiperOptions">
-        <ion-slide-page>
+        <ion-slide-page ng-repeat="counter in counters">
           <div class="counter-display">
-            <h1>{{timerCount}}</h1>
-            <h4>Qualquer coisa</h4>
+            <h1>{{counter.remainDays}}</h1>
+            <h4>{{counter.name}}</h4>
           </div>
         </ion-slide-page>
 
