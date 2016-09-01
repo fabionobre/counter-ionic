@@ -64,6 +64,10 @@ angular.module('starter.services', [])
         counter.remainHours = 0;
         counter.remainMinutes = 0;      
       }
+
+      if (counter.remainDays < 0) {
+        counter.remainDays = 0;
+      }
     }    
   };
 });

@@ -1,6 +1,3 @@
-<ion-view view-title="Main page">
-  <ion-content class="counter-container" scroll="false">
-
 <style>
   .slider-container {
     background: url({{background}}) no-repeat center center;
@@ -8,19 +5,15 @@
   }  
 </style>
 
-      <ion-slides slider="data.slider" class="slider-container" options="swiperOptions">
-        <ion-slide-page ng-repeat="counter in counters">
-          <div class="counter-display">
-            <h1>{{counter.remainDays}}</h1>
-            <h4>{{counter.name}}</h4>
-          </div>
-        </ion-slide-page>
-
-        <ion-slide-page>
-          <div class="box yellow"><h1>YELLOW</h1></div>
-        </ion-slide-page>
-
-      </ion-slides>
-
+<ion-view view-title="Main page">
+  <ion-content class="counter-container" scroll="false">
+    <ion-slides slider="data.slider" class="slider-container" options="swiperOptions">
+      <ion-slide-page ng-repeat="counter in counters">
+        <div class="counter-display">
+          <h1 style="color: {{counter.color}}">{{counter.remainDays}}</h1>
+          <h4>{{counter.name}}</h4>
+        </div>
+      </ion-slide-page>
+    </ion-slides>
   </ion-content>
 </ion-view>

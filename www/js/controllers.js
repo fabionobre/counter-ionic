@@ -10,6 +10,8 @@ angular.module('starter.controllers', [])
   $scope.timerCount = 0;
   $scope.counters = Counters.all();
 
+  console.log($scope.counters);
+
   var timer = $timeout(function() { $scope.onTimeout(); }, 1000);
 
   $scope.onTimeout = function() {
@@ -17,7 +19,7 @@ angular.module('starter.controllers', [])
       Counters.calculateRemainCounter($scope.counters[i]);
     }  
 
-    // timer = $timeout(function() { $scope.onTimeout();}, 1000);
+    timer = $timeout(function() { $scope.onTimeout();}, 1000);
     $scope.timerCount += 1;
   };
 
@@ -31,11 +33,19 @@ angular.module('starter.controllers', [])
       console.log('The active index is ' + swiper.activeIndex); 
     }
   };
+
+  $scope.edit = function() {
+    console.log($scope.swiper.activeIndex);
+  };
+
+  $scope.remove = function() {
+    console.log($scope.swiper.activeIndex);
+  };
 })
 
 .controller('NewCtrl', function($scope, $state, Counters) {
   
-  $scope.newCounter = {date: new Date(), useDate: false, name:''};
+  $scope.newCounter = {date: new Date(), useDate: false, name:'', color: '#000000'};
 
   $scope.addCounter = function() {
     Counters.add($scope.newCounter);

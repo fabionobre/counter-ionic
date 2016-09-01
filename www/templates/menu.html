@@ -13,8 +13,12 @@
     <ion-content>
       <ion-list>
 
-        <ion-item menu-close href="#/app/new">
+        <ion-item menu-close ng-click="edit()">
           Edit
+        </ion-item>
+
+        <ion-item menu-close ng-click="remove()">
+          Remove
         </ion-item>
 
         <ion-item menu-close href="#/app/new">
