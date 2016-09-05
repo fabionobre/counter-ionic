@@ -1,4 +1,9 @@
 /* Empty. Add your own CSS if you like */
+
+.counter-display-container {
+	height: 100%;	
+}
+
 .counter-display {
 	text-align: center;
 	width: 100% !important;

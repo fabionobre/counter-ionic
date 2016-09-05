@@ -23,5 +23,7 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-image-picker"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

@@ -5,7 +5,7 @@
   }  
 </style>
 
-<ion-view view-title="Main page">
+<!-- <ion-view view-title="Main page">
   <ion-content class="counter-container" scroll="false">
     <ion-slides slider="data.slider" class="slider-container" options="swiperOptions">
       <ion-slide-page ng-repeat="counter in counters">
@@ -16,4 +16,14 @@
       </ion-slide-page>
     </ion-slides>
   </ion-content>
+</ion-view> -->
+
+<ion-view view-title="Main page">
+  <div class="counter-display-container" ng-repeat="counter in counters" ng-show="counter == activeCounter" on-swipe-left="onSwipe()">
+    <div class="counter-display">
+      <h1 style="color: {{counter.color}}">{{counter.remainDays}}</h1>
+      <h4 style="color: {{counter.color}}">{{counter.name}}</h4>
+      <h4>{{counterSwipe}}</h4>
+    </div>
+  </div>
 </ion-view>

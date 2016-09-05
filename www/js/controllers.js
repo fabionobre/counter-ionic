@@ -10,6 +10,10 @@ angular.module('starter.controllers', [])
   $scope.timerCount = 0;
   $scope.counters = Counters.all();
 
+  $scope.activeCounter = Counters.getActiveCounter();
+  Counters.calculateRemainCounter($scope.activeCounter);
+
+  // console.log(new Date());
   console.log($scope.counters);
 
   var timer = $timeout(function() { $scope.onTimeout(); }, 1000);
@@ -23,23 +27,8 @@ angular.module('starter.controllers', [])
     $scope.timerCount += 1;
   };
 
-  $scope.swiperOptions = {
-    effect: 'slide',
-    initialSlide: 0,
-    onInit: function(swiper){
-      $scope.swiper = swiper;
-    },
-    onSlideChangeEnd: function(swiper){
-      console.log('The active index is ' + swiper.activeIndex); 
-    }
-  };
-
-  $scope.edit = function() {
-    console.log($scope.swiper.activeIndex);
-  };
-
-  $scope.remove = function() {
-    console.log($scope.swiper.activeIndex);
+  $scope.onSwipe = function() {
+    $scope.counterSwipe += 1;
   };
 })
 
@@ -51,15 +40,29 @@ angular.module('starter.controllers', [])
     Counters.add($scope.newCounter);
     $state.go('app.main'); 
   };
+
+  $scope.backToMain = function() {
+    $state.go('app.main'); 
+  }; 
 })
 
 .controller('EditCtrl', function($scope, $stateParams, $state, Counters) {
   
-  $scope.newCounter = Counter.get($stateParams.id);
+  $scope.newCounter = Counters.getActiveCounter();
+  $scope.newCounter.date = new Date($scope.newCounter.date);
 
   $scope.addCounter = function() {
-    Counters.chnage($scope.newCounter);
+    Counters.change($scope.newCounter);
     $state.go('app.main'); 
   };
+
+  $scope.backToMain = function() {
+    $state.go('app.main'); 
+  }; 
 })
 
+.controller('RemoveCtrl', function($scope, $state, Counters) {
+
+  Counters.remove(Counters.getActiveCounter());
+  $state.go('app.main'); 
+})

@@ -3,8 +3,22 @@ angular.module('starter.services', [])
 .factory('Counters', function() {
 
   var counters = loadLocalSorange("listOfCounters") || [];
+  var activeCounter = loadLocalSorange("activeCounter") || null;
 
   return {
+
+    getActiveCounter: function() {
+      if (activeCounter == null && counters.length > 0) {
+        activeCounter = counters[0].id;
+      }
+
+      return this.get(activeCounter);
+    },
+    setActiveCounter: function(counter) {      
+      activeCounter = counter.id;
+      localStorage.setItem("activeCounter", angular.toJson(activeCounter));
+    },    
+
     all: function() {
       return counters;
     },
@@ -23,6 +37,7 @@ angular.module('starter.services', [])
     add: function(counter) {
 
       counter.id = 0;
+      this.formatHour(counter);
 
       for (var i = 0; i < counter.length; i++) {
         if (counter[i].id > counter.id) {
@@ -35,14 +50,25 @@ angular.module('starter.services', [])
       this.save();
     },
     change: function(counter) {
+      this.formatHour(counter);
       oldCounter = this.get(counter.id);
       oldCounter = counter;
       this.save();
     },    
-    save: function(counter) {
+    save: function() {
       localStorage.setItem("listOfCounters", angular.toJson(counters));
     },
+
+    formatHour: function(counter) {
+      if (!counter.useDate) {
+        counter.date.setHours(0,0,0,0);
+      }
+    },
     calculateRemainCounter: function(counter) {
+
+      if (counter == null) {
+        return;
+      }
 
       var rest = (new Date(counter.date) - new Date());
       counter.remainDays = parseInt(rest / (24*60*60*1000));

@@ -55,11 +55,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('app.edit', {
-    url: '/edit/:id',
+    url: '/edit',
     views: {
       'menuContent': {
         templateUrl: 'templates/counter-add.html',
         controller: 'EditCtrl'
+      }
+    }
+  })
+
+  .state('app.remove', {
+    url: '/remove',
+    views: {
+      'menuContent': {
+        controller: 'RemoveCtrl'
       }
     }
   })
