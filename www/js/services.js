@@ -8,7 +8,8 @@ angular.module('starter.services', [])
   return {
 
     getActiveCounter: function() {
-      if (activeCounter == null && counters.length > 0) {
+      if ((activeCounter == null && counters.length > 0)
+        || (this.get(activeCounter) == null && counters.length > 0)) {
         activeCounter = counters[0].id;
       }
 

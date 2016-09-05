@@ -7,7 +7,6 @@ angular.module('starter.controllers', [])
 .controller('MainCtrl', function($scope, $timeout, Counters) {
   // $scope.background = '../img/wallpaper-full-hd-1080-x-1920-smartphone-vortex-in-space.jpg';
 
-  $scope.timerCount = 0;
   $scope.counters = Counters.all();
 
   $scope.activeCounter = Counters.getActiveCounter();
@@ -62,7 +61,6 @@ angular.module('starter.controllers', [])
 })
 
 .controller('RemoveCtrl', function($scope, $state, Counters) {
-
   Counters.remove(Counters.getActiveCounter());
   $state.go('app.main'); 
 })
