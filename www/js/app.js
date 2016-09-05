@@ -68,6 +68,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/remove',
     views: {
       'menuContent': {
+        templateUrl: 'templates/counter-add.html',
         controller: 'RemoveCtrl'
       }
     }

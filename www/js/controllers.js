@@ -1,19 +1,14 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope) {
-
+.controller('AppCtrl', function($scope, Counters) {
+  $scope.counters = Counters.all();
 })
 
 .controller('MainCtrl', function($scope, $timeout, Counters) {
-  // $scope.background = '../img/wallpaper-full-hd-1080-x-1920-smartphone-vortex-in-space.jpg';
-
-  $scope.counters = Counters.all();
-
-  $scope.activeCounter = Counters.getActiveCounter();
+  
   Counters.calculateRemainCounter($scope.activeCounter);
-
-  // console.log(new Date());
   console.log($scope.counters);
+  // $scope.background = '../img/wallpaper-full-hd-1080-x-1920-smartphone-vortex-in-space.jpg';
 
   var timer = $timeout(function() { $scope.onTimeout(); }, 1000);
 
@@ -29,11 +24,15 @@ angular.module('starter.controllers', [])
   $scope.onSwipe = function() {
     $scope.counterSwipe += 1;
   };
+
+  $scope.activeCounter = function() {   
+    return Counters.getActiveCounter();
+  };  
 })
 
 .controller('NewCtrl', function($scope, $state, Counters) {
   
-  $scope.newCounter = {date: new Date(), useDate: false, name:'', color: '#000000'};
+  $scope.newCounter = {date: new Date(), useDate: false, name:'', color: '#000000', time: new Date()};
 
   $scope.addCounter = function() {
     Counters.add($scope.newCounter);
