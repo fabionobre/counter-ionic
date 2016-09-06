@@ -22,7 +22,8 @@ angular.module('starter.controllers', [])
   };
 
   $scope.onSwipe = function() {
-    $scope.counterSwipe += 1;
+    console.log("ok");
+    Counters.getNextCounter();
   };
 
   $scope.activeCounter = function() {   

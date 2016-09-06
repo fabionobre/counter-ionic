@@ -18,7 +18,30 @@ angular.module('starter.services', [])
     setActiveCounter: function(counter) {      
       activeCounter = counter.id;
       localStorage.setItem("activeCounter", angular.toJson(activeCounter));
-    },    
+    },   
+
+    getNextCounter: function() {
+
+      if (activeCounter != null && counters.length > 0) {
+
+        for (var i = 0; i < counters.length; i++) {
+
+          if (counters[i].id == activeCounter) {
+            if (i < (counters.length - 1)) {
+              activeCounter = counters[i+1].id;
+              break;
+            } else {
+              activeCounter = counters[0].id;
+              break;
+            }
+          }
+        }
+      }
+
+      var counter = this.get(activeCounter);
+      this.setActiveCounter(counter);
+      return counter;
+    },
 
     all: function() {
       return counters;
@@ -40,9 +63,9 @@ angular.module('starter.services', [])
       counter.id = 0;
       this.formatHour(counter);
 
-      for (var i = 0; i < counter.length; i++) {
-        if (counter[i].id > counter.id) {
-          counter.id = counter[i].id;
+      for (var i = 0; i < counters.length; i++) {
+        if (counters[i].id > counter.id) {
+          counter.id = counters[i].id;
         }
       }      
 
