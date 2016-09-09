@@ -7,7 +7,7 @@ angular.module('starter.controllers', [])
 .controller('MainCtrl', function($scope, $timeout, Counters) {
   
   Counters.calculateRemainCounter($scope.activeCounter);
-  console.log($scope.counters);
+  // console.log($scope.counters);
   // $scope.background = '../img/wallpaper-full-hd-1080-x-1920-smartphone-vortex-in-space.jpg';
 
   var timer = $timeout(function() { $scope.onTimeout(); }, 1000);
@@ -22,7 +22,6 @@ angular.module('starter.controllers', [])
   };
 
   $scope.onSwipe = function() {
-    console.log("ok");
     Counters.getNextCounter();
   };
 

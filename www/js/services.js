@@ -1,9 +1,9 @@
 angular.module('starter.services', [])
 
-.factory('Counters', function() {
+.factory('Counters', function(LocalStorage) {
 
-  var counters = loadLocalSorange("listOfCounters") || [];
-  var activeCounter = loadLocalSorange("activeCounter") || null;
+  var counters = LocalStorage.get("listOfCounters") || [];
+  var activeCounter = LocalStorage.get("activeCounter") || null;
 
   return {
 
@@ -120,16 +120,22 @@ angular.module('starter.services', [])
       }
     }    
   };
-});
+})
 
-function loadLocalSorange(data) {
+.factory('LocalStorage', function() {
 
-  if(typeof(Storage) != "undefined") {
-    if (localStorage.getItem(data) != null && localStorage.getItem(data) != "undefined") {
-      return JSON.parse(localStorage.getItem(data));
-    }
-  } else {
+  if(typeof(Storage) == "undefined") {
     console.log("Sorry, your browser does not support Web Storage...");
   }
-}
 
+  return {
+
+    get: function(key) {
+      return JSON.parse(localStorage.getItem(key) || null);
+    },
+
+    set: function(key, value) {
+      localStorage.setItem(key, angular.toJson(value));
+    }    
+  }
+});
